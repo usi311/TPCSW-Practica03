@@ -77,8 +77,7 @@ public class TPCSWPractica03 {
         
         
         }
-
-        // Confirmar la transacción
+      // Confirmar la transacción
         t.commit();
     }
 }
