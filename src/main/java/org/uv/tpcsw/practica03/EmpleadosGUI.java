@@ -36,6 +36,7 @@ cargarDepartamentos();
         btonBtodos = new javax.swing.JButton();
         btonBid = new javax.swing.JButton();
         jComboBox1 = new javax.swing.JComboBox<>();
+        jBdelete = new javax.swing.JButton();
 
         setClosable(true);
         setMinimumSize(new java.awt.Dimension(700, 400));
@@ -96,6 +97,13 @@ cargarDepartamentos();
             }
         });
 
+        jBdelete.setText("Delete");
+        jBdelete.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBdeleteActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -108,7 +116,7 @@ cargarDepartamentos();
                         .addGap(35, 35, 35))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(38, 38, 38)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                     .addComponent(jLabel4)
@@ -124,7 +132,10 @@ cargarDepartamentos();
                             .addComponent(btonBtodos)
                             .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
                                 .addGap(3, 3, 3)
-                                .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 60, Short.MAX_VALUE)
+                                .addComponent(jBdelete)
+                                .addGap(9, 9, 9)))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(btoGuardar)
@@ -156,7 +167,9 @@ cargarDepartamentos();
                             .addComponent(jLabel4)
                             .addComponent(txtTelefono, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(18, 18, 18)
-                        .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jBdelete))
                         .addGap(27, 27, 27)
                         .addComponent(btonBtodos)
                         .addGap(18, 18, 18)
@@ -315,10 +328,35 @@ private void cargarDepartamentos() {
        
     }//GEN-LAST:event_jComboBox1ActionPerformed
 
+    private void jBdeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBdeleteActionPerformed
+     DAOEmpleado dao = new DAOEmpleado();
+    
+    String clave = txtClave.getText();
+    
+    if (clave.isEmpty()) {
+        JOptionPane.showMessageDialog(this, "Por favor, ingresa la clave del empleado a eliminar.");
+        return;
+    }
+    try {
+        Long claveLong = Long.parseLong(clave); 
+        boolean eliminado = dao.delete(claveLong);
+        
+        if (eliminado) {
+            JOptionPane.showMessageDialog(this, "Empleado eliminado exitosamente.");
+            btonBtodosActionPerformed(evt); 
+        } else {
+            JOptionPane.showMessageDialog(this, "Empleado no encontrado.");
+        }
+    } catch (NumberFormatException e) {
+        JOptionPane.showMessageDialog(this, "La clave debe ser un número válido.");
+    }
+    }//GEN-LAST:event_jBdeleteActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btoGuardar;
     private javax.swing.JButton btonBid;
     private javax.swing.JButton btonBtodos;
+    private javax.swing.JButton jBdelete;
     private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;

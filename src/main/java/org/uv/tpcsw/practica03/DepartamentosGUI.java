@@ -29,6 +29,7 @@ public class DepartamentosGUI extends javax.swing.JInternalFrame {
         jTable1 = new javax.swing.JTable();
         btonBtodos = new javax.swing.JButton();
         btonBid = new javax.swing.JButton();
+        jBDelete = new javax.swing.JButton();
 
         setClosable(true);
         setMinimumSize(new java.awt.Dimension(700, 400));
@@ -78,6 +79,13 @@ public class DepartamentosGUI extends javax.swing.JInternalFrame {
             }
         });
 
+        jBDelete.setText("Delete");
+        jBDelete.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBDeleteActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -85,23 +93,22 @@ public class DepartamentosGUI extends javax.swing.JInternalFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                            .addContainerGap()
-                            .addComponent(btonBid)
-                            .addGap(35, 35, 35))
                         .addGroup(layout.createSequentialGroup()
                             .addGap(44, 44, 44)
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                .addGroup(layout.createSequentialGroup()
-                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                        .addComponent(jLabel2)
-                                        .addComponent(jLabel1))
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                        .addComponent(txtClave, javax.swing.GroupLayout.DEFAULT_SIZE, 160, Short.MAX_VALUE)
-                                        .addComponent(txtNombre)))
-                                .addComponent(btonBtodos))
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)))
+                                .addComponent(jLabel2)
+                                .addComponent(jLabel1))
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addComponent(txtClave, javax.swing.GroupLayout.DEFAULT_SIZE, 160, Short.MAX_VALUE)
+                                .addComponent(txtNombre)))
+                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                            .addContainerGap()
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(btonBtodos)
+                                .addComponent(btonBid)
+                                .addComponent(jBDelete))
+                            .addGap(35, 35, 35)))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(65, 65, 65)
                         .addComponent(btoGuardar)))
@@ -124,9 +131,11 @@ public class DepartamentosGUI extends javax.swing.JInternalFrame {
                             .addComponent(txtNombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(56, 56, 56)
                         .addComponent(btoGuardar)
-                        .addGap(119, 119, 119)
+                        .addGap(34, 34, 34)
+                        .addComponent(jBDelete)
+                        .addGap(40, 40, 40)
                         .addComponent(btonBtodos)
-                        .addGap(18, 18, 18)
+                        .addGap(41, 41, 41)
                         .addComponent(btonBid))
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 375, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -221,10 +230,37 @@ public class DepartamentosGUI extends javax.swing.JInternalFrame {
      cargarDepartamentos();
     }//GEN-LAST:event_btonBidActionPerformed
 
+    private void jBDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBDeleteActionPerformed
+    DAODepartamento daoDepartamento = new DAODepartamento();
+    
+    String clave = txtClave.getText();
+
+    if (clave.isEmpty()) {
+        JOptionPane.showMessageDialog(this, "Por favor, ingresa la clave del departamento a eliminar.");
+        return;
+    }
+
+    try {
+        Long claveLong = Long.parseLong(clave);
+
+        boolean eliminado = daoDepartamento.delete(claveLong);
+
+        if (eliminado) {
+            JOptionPane.showMessageDialog(this, "Departamento eliminado exitosamente.");
+            cargarDepartamentos(); 
+        } else {
+            JOptionPane.showMessageDialog(this, "Departamento no encontrado.");
+        }
+    } catch (NumberFormatException e) {
+        JOptionPane.showMessageDialog(this, "La clave debe ser un número válido.");
+    }
+    }//GEN-LAST:event_jBDeleteActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btoGuardar;
     private javax.swing.JButton btonBid;
     private javax.swing.JButton btonBtodos;
+    private javax.swing.JButton jBDelete;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JScrollPane jScrollPane1;
