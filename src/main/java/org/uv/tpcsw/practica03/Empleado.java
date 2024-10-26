@@ -23,9 +23,11 @@ public class Empleado implements Serializable {
     @Column(name = "telefono")
     private String telefono;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "depto_clave", referencedColumnName = "clave")
+   
+    @ManyToOne(fetch = FetchType.EAGER)  // Relación EAGER para cargar automáticamente el departamento
+    @JoinColumn(name = "departamento_id")  // Clave foránea hacia el departamento
     private Departamento depto;
+
 
     public long getClave() {
         return clave;

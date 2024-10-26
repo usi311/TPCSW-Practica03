@@ -13,6 +13,7 @@ public class EmpleadosGUI extends javax.swing.JInternalFrame {
 private Map<Long, String> departamentosMap = new HashMap<>();
 
     public EmpleadosGUI() {
+      jComboBox1 = new javax.swing.JComboBox<>();
       initComponents();
 cargarDepartamentos(); 
     }
@@ -35,20 +36,20 @@ cargarDepartamentos();
         jTable1 = new javax.swing.JTable();
         btonBtodos = new javax.swing.JButton();
         btonBid = new javax.swing.JButton();
-        jComboBox1 = new javax.swing.JComboBox<>();
         jBdelete = new javax.swing.JButton();
+        jComboBox1 = new javax.swing.JComboBox<>();
 
         setClosable(true);
         setMinimumSize(new java.awt.Dimension(700, 400));
-        setPreferredSize(new java.awt.Dimension(700, 400));
+        setPreferredSize(new java.awt.Dimension(1600, 1400));
 
-        jLabel1.setText("Clave");
+        jLabel1.setText("CLAVE");
 
-        jLabel2.setText("Nombre");
+        jLabel2.setText("NOMBRE");
 
-        jLabel3.setText("Direccion");
+        jLabel3.setText("DIRECCION");
 
-        jLabel4.setText("Telefono");
+        jLabel4.setText("TELEFONO");
 
         txtClave.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -65,13 +66,13 @@ cargarDepartamentos();
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null}
             },
             new String [] {
-                "Clave", "Nombre", "Direccion", "Telefono"
+                "Clave", "Nombre", "Direccion", "Telefono", "Departamento"
             }
         ));
         jScrollPane1.setViewportView(jTable1);
@@ -90,17 +91,17 @@ cargarDepartamentos();
             }
         });
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        jComboBox1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jComboBox1ActionPerformed(evt);
-            }
-        });
-
         jBdelete.setText("Delete");
         jBdelete.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jBdeleteActionPerformed(evt);
+            }
+        });
+
+        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new Departamento[]{}));
+        jComboBox1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jComboBox1ActionPerformed(evt);
             }
         });
 
@@ -109,73 +110,77 @@ cargarDepartamentos();
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(btonBid)
-                        .addGap(35, 35, 35))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(38, 38, 38)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                        .addComponent(btonBtodos, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(55, 55, 55)
+                        .addComponent(btonBid, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 59, Short.MAX_VALUE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel1)
+                                    .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.TRAILING))
+                                .addGap(32, 32, 32))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jLabel4)
-                                    .addComponent(jLabel3)
-                                    .addComponent(jLabel2)
-                                    .addComponent(jLabel1))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(txtClave, javax.swing.GroupLayout.DEFAULT_SIZE, 160, Short.MAX_VALUE)
+                                    .addComponent(jLabel3))
+                                .addGap(18, 18, 18)))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                    .addComponent(txtClave, javax.swing.GroupLayout.DEFAULT_SIZE, 453, Short.MAX_VALUE)
                                     .addComponent(txtNombre)
-                                    .addComponent(txtDireccion)
-                                    .addComponent(txtTelefono)))
-                            .addComponent(btonBtodos)
-                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                                .addGap(3, 3, 3)
-                                .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 60, Short.MAX_VALUE)
-                                .addComponent(jBdelete)
-                                .addGap(9, 9, 9)))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)))
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(btoGuardar)
+                                    .addComponent(txtDireccion, javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(txtTelefono))
+                                .addGap(90, 90, 90))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addGap(6, 6, 6)
+                                .addComponent(jComboBox1, 0, 277, Short.MAX_VALUE)
+                                .addGap(18, 18, 18)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(btoGuardar, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jBdelete, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(89, 89, 89))))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(6, 6, 6)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 452, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addComponent(jScrollPane1)
+                        .addContainerGap())))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(14, 14, 14)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel1)
                     .addComponent(txtClave, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btoGuardar))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                    .addComponent(jLabel1))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(txtNombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel2))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(txtDireccion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel3))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(txtTelefono, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel4))
+                .addGap(9, 9, 9)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(btoGuardar, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(jBdelete, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel2)
-                            .addComponent(txtNombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel3)
-                            .addComponent(txtDireccion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel4)
-                            .addComponent(txtTelefono, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jBdelete))
-                        .addGap(27, 27, 27)
-                        .addComponent(btonBtodos)
-                        .addGap(18, 18, 18)
-                        .addComponent(btonBid))
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 375, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(56, 56, 56)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(btonBtodos, javax.swing.GroupLayout.DEFAULT_SIZE, 52, Short.MAX_VALUE)
+                            .addComponent(btonBid, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                .addGap(2, 2, 2)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 349, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(13, Short.MAX_VALUE))
         );
 
         pack();
@@ -186,110 +191,100 @@ cargarDepartamentos();
     }//GEN-LAST:event_txtClaveActionPerformed
 
     private void btoGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btoGuardarActionPerformed
-    DAOEmpleado dao = new DAOEmpleado();
-    DAODepartamento daoDepartamento = new DAODepartamento();  
-    
-  
+      DAOEmpleado dao = new DAOEmpleado();
+
+    // Obtener los valores ingresados en los campos de texto
     String clave = txtClave.getText();
     String nombre = txtNombre.getText();
     String direccion = txtDireccion.getText();
     String telefono = txtTelefono.getText();
 
-  
+    // Validar que los campos no estén vacíos
     if (clave.isEmpty() || nombre.isEmpty() || direccion.isEmpty() || telefono.isEmpty()) {
         JOptionPane.showMessageDialog(this, "Por favor, completa todos los campos.");
         return;
     }
 
-   
-    String nombreDepartamento = (String) jComboBox1.getSelectedItem();
+    // Obtener el departamento seleccionado del JComboBox
+    Departamento departamentoSeleccionado = (Departamento) jComboBox1.getSelectedItem();
 
- 
-    Long departamentoId = departamentosMap.entrySet().stream()
-            .filter(entry -> entry.getValue().equals(nombreDepartamento))
-            .map(Map.Entry::getKey)
-            .findFirst()
-            .orElse(null);
-
-   
-    if (departamentoId == null) {
+    if (departamentoSeleccionado == null) {
         JOptionPane.showMessageDialog(this, "Seleccione un departamento válido.");
         return;
     }
 
-
-    Departamento departamento = daoDepartamento.findById(departamentoId);
-
-
-    if (departamento == null) {
-        JOptionPane.showMessageDialog(this, "El departamento seleccionado no existe.");
-        return;
-    }
-
-   
+    // Crear el objeto Empleado
     Empleado empleado = new Empleado();
     empleado.setClave(Long.parseLong(clave));
     empleado.setNombre(nombre);
     empleado.setDireccion(direccion);
     empleado.setTelefono(telefono);
-    empleado.setDepto(departamento);  
+    empleado.setDepto(departamentoSeleccionado);  // Asociar el departamento
 
-  
+    // Guardar el empleado en la base de datos
     boolean guardado = dao.save(empleado);
 
-    if (guardado) {
-        JOptionPane.showMessageDialog(this, "Empleado guardado exitosamente.");
-    } else {
-        JOptionPane.showMessageDialog(this, "Error al guardar el empleado.");
-    }
-
-
+   if (guardado) {
+    JOptionPane.showMessageDialog(null, "Empleado guardado exitosamente.", 
+                                  "Confirmación", JOptionPane.INFORMATION_MESSAGE);
+} else {
+    JOptionPane.showMessageDialog(null, "Error al guardar el empleado.", 
+                                  "Error", JOptionPane.ERROR_MESSAGE);
+}
+    // Limpiar los campos
     txtClave.setText("");
     txtNombre.setText("");
     txtDireccion.setText("");
     txtTelefono.setText("");
-    jComboBox1.setSelectedIndex(0);  
-       
+    jComboBox1.setSelectedIndex(0); 
     }//GEN-LAST:event_btoGuardarActionPerformed
 
 private void cargarDepartamentos() {
-    jComboBox1.removeAllItems();  
+      jComboBox1.removeAllItems();  // Limpiar las opciones
+ jComboBox1.addItem(new Departamento(0L, "Seleccionar Departamento"));
+    DAODepartamento daoDepartamento = new DAODepartamento();
+    List<Departamento> departamentos = daoDepartamento.findAll();
 
-    departamentosMap.put(1L, "Administracion");
-    departamentosMap.put(2L, "Finanzas");
-    departamentosMap.put(3L, "Pepes");
-
-    for (String nombre : departamentosMap.values()) {
-        jComboBox1.addItem(nombre);
+    if (departamentos != null && !departamentos.isEmpty()) {
+        for (Departamento dep : departamentos) {
+            jComboBox1.addItem(dep);  // Agregar objeto completo al JComboBox
+        }
+        JOptionPane.showMessageDialog(this, "Departamentos cargados correctamente.");
+    } else {
+        JOptionPane.showMessageDialog(this, "No se encontraron departamentos.");
     }
 
-    JOptionPane.showMessageDialog(this, "Departamentos cargados correctamente.");
 }
 
 
     private void btonBtodosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btonBtodosActionPerformed
-        DAOEmpleado dao = new DAOEmpleado();
-    
- 
+    DAOEmpleado dao = new DAOEmpleado();
     List<Empleado> empleados = dao.findAll();
-    
-    if (empleados != null) {
- 
+
+    if (empleados != null && !empleados.isEmpty()) {
         DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
         model.setRowCount(0);
-        
-      
+
         for (Empleado emp : empleados) {
-            Object[] fila = new Object[4];
+            Object[] fila = new Object[5];
             fila[0] = emp.getClave();
             fila[1] = emp.getNombre();
             fila[2] = emp.getDireccion();
             fila[3] = emp.getTelefono();
+
+            // Verificar si el departamento es null para evitar NullPointerException
+            if (emp.getDepto() != null) {
+                fila[4] = emp.getDepto().getNombre();
+            } else {
+                fila[4] = "Sin departamento";
+            }
+
             model.addRow(fila);
         }
     } else {
-        JOptionPane.showMessageDialog(this, "No se encontraron empleados");
+        JOptionPane.showMessageDialog(this, "No se encontraron empleados.");
     }
+        
     }//GEN-LAST:event_btonBtodosActionPerformed
 
 
@@ -312,21 +307,18 @@ private void cargarDepartamentos() {
         DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
         model.setRowCount(0);
         
-        Object[] fila = new Object[4];
+        Object[] fila = new Object[5];
         fila[0] = empleado.getClave();
         fila[1] = empleado.getNombre();
         fila[2] = empleado.getDireccion();
         fila[3] = empleado.getTelefono();
+        fila[4] = empleado.getDepto().getNombre();
         model.addRow(fila);
     } else {
         JOptionPane.showMessageDialog(this, "Empleado no encontrado");
     }
 
     }//GEN-LAST:event_btonBidActionPerformed
-
-    private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
-       
-    }//GEN-LAST:event_jComboBox1ActionPerformed
 
     private void jBdeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBdeleteActionPerformed
      DAOEmpleado dao = new DAOEmpleado();
@@ -341,23 +333,29 @@ private void cargarDepartamentos() {
         Long claveLong = Long.parseLong(clave); 
         boolean eliminado = dao.delete(claveLong);
         
-        if (eliminado) {
-            JOptionPane.showMessageDialog(this, "Empleado eliminado exitosamente.");
-            btonBtodosActionPerformed(evt); 
-        } else {
-            JOptionPane.showMessageDialog(this, "Empleado no encontrado.");
-        }
+       if (eliminado) {
+    JOptionPane.showMessageDialog(null, "Empleado eliminado exitosamente.", 
+                                  "Confirmación", JOptionPane.INFORMATION_MESSAGE);
+} else {
+    JOptionPane.showMessageDialog(null, "Empleado no encontrado.", 
+                                  "Error", JOptionPane.ERROR_MESSAGE);
+}
+
     } catch (NumberFormatException e) {
         JOptionPane.showMessageDialog(this, "La clave debe ser un número válido.");
     }
     }//GEN-LAST:event_jBdeleteActionPerformed
+
+    private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jComboBox1ActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btoGuardar;
     private javax.swing.JButton btonBid;
     private javax.swing.JButton btonBtodos;
     private javax.swing.JButton jBdelete;
-    private javax.swing.JComboBox<String> jComboBox1;
+    private javax.swing.JComboBox<Departamento> jComboBox1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

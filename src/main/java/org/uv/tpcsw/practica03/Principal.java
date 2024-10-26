@@ -1,13 +1,23 @@
 package org.uv.tpcsw.practica03;
 
+import javax.swing.JFrame;
+
 
 public class Principal extends javax.swing.JFrame {
 
  
     public Principal() {
         initComponents();
+        configurarVentana();
     }
-    
+     private void configurarVentana() {
+        // Maximizar la ventana al iniciar
+        this.setExtendedState(JFrame.MAXIMIZED_BOTH);  
+        
+        // Asegurarse de que la ventana se ajuste a su contenido
+        this.setLocationRelativeTo(null);  // Centrar en la pantalla
+    }
+
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -30,7 +40,7 @@ public class Principal extends javax.swing.JFrame {
         jDesktopPane1.setLayout(jDesktopPane1Layout);
         jDesktopPane1Layout.setHorizontalGroup(
             jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 800, Short.MAX_VALUE)
+            .addGap(0, 1018, Short.MAX_VALUE)
         );
         jDesktopPane1Layout.setVerticalGroup(
             jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)

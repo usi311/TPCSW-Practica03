@@ -28,20 +28,17 @@ public class DAOEmpleado implements IDAOGeneral<Empleado, Long> {
     @Override
     public boolean delete(Long id) {
         Session session = HibernateUtil.getSessionFactory().openSession();
-    Transaction t = session.beginTransaction();
+    Transaction tx = session.beginTransaction();
     try {
-        Departamento depto = session.get(Departamento.class, id);
-        if (depto != null) {
-            session.delete(depto);  // Hibernate elimina los empleados automáticamente
-            t.commit();
+        Empleado empleado = session.get(Empleado.class, id);
+        if (empleado != null) {
+            session.delete(empleado);
+            tx.commit();
             return true;
-        } else {
-            t.rollback();
-            System.out.println("Departamento no encontrado con ID: " + id);
-            return false;
         }
+        return false;
     } catch (Exception e) {
-        t.rollback();
+        tx.rollback();
         e.printStackTrace();
         return false;
     } finally {

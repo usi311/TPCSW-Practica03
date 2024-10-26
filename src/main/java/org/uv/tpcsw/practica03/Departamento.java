@@ -18,6 +18,14 @@ import javax.persistence.Table;
 @Table(name = "departamentos")
 public class Departamento implements Serializable {
 
+    public Departamento(long clave, String nombre) {
+        this.clave = clave;
+        this.nombre = nombre;
+    }
+
+    public Departamento() {
+    }
+
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "departamentos_clave_seq")
     @SequenceGenerator(name = "departamentos_clave_seq", sequenceName = "departamentos_clave_seq",
@@ -63,6 +71,10 @@ public class Departamento implements Serializable {
 
     public void setNombre(String nombre) {
         this.nombre = nombre;
+    }
+       @Override
+    public String toString() {
+        return this.nombre;  // Sobrescribir para mostrar el nombre en el JComboBox
     }
 
 }
